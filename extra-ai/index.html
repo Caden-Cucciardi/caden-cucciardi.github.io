@@ -1,74 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>My AI Gallery</title>
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial;
-  margin: 0 auto;
-  max-width: 800px;
-}
-
-h1 {
-  text-align: center;
-}
-
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.gallery-item {
-  margin: 10px;
-}
-
-.gallery-image {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-}
-</style>
-</head>
-<body>
-<h1>Welcome to my AI gallery!</h1>
-<p>Here you can see some images that I generated using artificial intelligence.</p>
-<div class="gallery">
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content an abstract painting">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a cat wearing sunglasses">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a landscape with mountains and a lake">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a robot playing guitar">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a pizza with pineapple and ham">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a flower with rainbow petals">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a car made of Lego bricks">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a dragon breathing fire">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a map of the world with different colors for each country">
-</div>
-<div class="gallery-item">
-<img class="gallery-image" src="#generate_content a portrait of Albert Einstein with a funny expression">
-</div>
-<!-- Add more gallery items here -->
-</div>
-</body>
+  <head>
+    <title>Guessing Game</title>
+  </head>
+  <body>
+    <h1>Guessing Game</h1>
+    <p>Think of a number between 1 and 100.</p>
+    <form>
+      <label for="guess">Enter your guess:</label>
+      <input type="number" id="guess" name="guess" min="1" max="100">
+      <input type="submit" value="Submit">
+    </form>
+    <p id="result"></p>
+    <script>
+      // Generate a random number between 1 and 100
+      let secretNumber = Math.floor(Math.random() * 100) + 1;
+     
+      // Handle form submission
+      document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+       
+        // Get the user's guess
+        let guess = parseInt(document.getElementById('guess').value);
+       
+        // Check if the guess is correct
+        if (guess === secretNumber) {
+          document.getElementById('result').textContent = 'Congratulations! You won!';
+        } else if (guess < secretNumber) {
+          document.getElementById('result').textContent = 'Too low. Try again.';
+        } else {
+          document.getElementById('result').textContent = 'Too high. Try again.';
+        }
+      });
+    </script>
+  </body>
 </html>
