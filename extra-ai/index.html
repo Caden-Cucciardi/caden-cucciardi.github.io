@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Snake Game</title>
+    <title>Pong Game</title>
     <style>
-        body {
-            background-color: green;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        td {
-            width: 20px;
-            height: 20px;
+        canvas {
             border: 1px solid black;
-        }
-        .red {
-            background-color: red;
         }
     </style>
 </head>
 <body>
-    <table>
-        <tbody>
-            <tr>
-                <td class="red"></td><td></td><td class="red"></td><td></td><td class="red"></td>
-            </tr>
-            <tr>
-                <td></td><td class="red"></td><td></td><td class="red"></td><td></td>
-            </tr>
-            <tr>
-                <td class="red"></td><td></td><td class="red"></td><td></td><td class="red"></td>
-            </tr>
-            <tr>
-                <td></td><td class="red"></td><td></td><td class="red"></td><td></td>
-            </tr>
-            <tr>
-                <td class="red"></td><td></td><
+    <canvas id="pong" width="600" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('pong');
+        const context = canvas.getContext('2d');
+
+        // Create user paddle
+        const user = {
+            x: 0,
+            y: canvas.height/2 - 50/2,
+            width: 10,
+            height: 50,
+            color: 'white',
+            score: 0
+        }
+
+        // Create computer paddle
+        const comp = {
+            x: canvas.width - 10,
+            y: canvas.height/2 - 50/2,
+            width: 10,
+            height: 50,
+            color: 'white',
+            score: 0
+        }
+
+        // Create ball
+        const ball = {
+            x: canvas.width/2,
+            y: canvas.height/2,
+            radius: 10,
+            speed: 5,
+            velocityX: 5,
+            velocityY: 5,
+            color: 'white'
+        }
+
+        // Draw rectangle function
+        function drawRect(x, y, w, h, color) {
+            context.fillStyle = color;
+            context.fillRect(x, y, w, h);
+        }
+
+        // Draw circle function
+        function drawCircle(x, y, r, color) 
