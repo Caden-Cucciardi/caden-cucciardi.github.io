@@ -1,37 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Guessing Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script>
+      let x = 100;
+      let y = 100;
+      let speed = 2;
+
+      function setup() {
+        createCanvas(400, 400);
+      }
+
+      function draw() {
+        background(220);
+
+        // body
+        fill(0, 200, 0);
+        ellipse(x, y, 100, 50);
+
+        // legs
+        rect(x - 40, y + 20, 20, 40);
+        rect(x + 20, y + 20, 20, 40);
+
+        // head
+        fill(0,150,0);
+        ellipse(x + 50, y -10 ,60 ,30);
+
+         // eyes
+         fill(255);
+         ellipse(x +60 ,y -15 ,10 ,10);
+         fill(0);
+         ellipse(x +60 ,y -15 ,5 ,5);
+
+
+         // move alligator
+         x += speed;
+
+         // change direction if hits edge
+         if (x > width || x < 0) {
+           speed *= -1;
+         }
+
+         // make alligator follow mouse
+         if (mouseIsPressed) {
+           if (mouseX > x) {
+             x += speed;
+           } else {
+             x -= speed;
+           }
+
+           if (mouseY > y) {
+             y += speed;
+           } else {
+             y -= speed;
+           }
+         }
+      }
+    </script>
   </head>
   <body>
-    <h1>Guessing Game</h1>
-    <p>Think of a number between 1 and 100.</p>
-    <form>
-      <label for="guess">Enter your guess:</label>
-      <input type="number" id="guess" name="guess" min="1" max="100">
-      <input type="submit" value="Submit">
-    </form>
-    <p id="result"></p>
-    <script>
-      // Generate a random number between 1 and 100
-      let secretNumber = Math.floor(Math.random() * 100) + 1;
-     
-      // Handle form submission
-      document.querySelector('form').addEventListener('submit', event => {
-        event.preventDefault();
-       
-        // Get the user's guess
-        let guess = parseInt(document.getElementById('guess').value);
-       
-        // Check if the guess is correct
-        if (guess === secretNumber) {
-          document.getElementById('result').textContent = 'Congratulations! You won!';
-        } else if (guess < secretNumber) {
-          document.getElementById('result').textContent = 'Too low. Try again.';
-        } else {
-          document.getElementById('result').textContent = 'Too high. Try again.';
-        }
-      });
-    </script>
+    <h1>Alligator Animation</h1>
+    <p>Click and hold the mouse button to make the alligator follow the cursor.</p>
   </body>
 </html>
